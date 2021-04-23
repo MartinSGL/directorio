@@ -13,7 +13,7 @@ use App\Http\Livewire\Admin\UsaerLiveWire;
 
 
 
-Route::get('', [homeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
+Route::get('', [HomeController::class, 'index'])->middleware('can:admin.home')->name('admin.home');
 Route::get('discapacidades', UsaerLiveWire::class)->middleware('can:admin.usaers')->name('admin.usaers');
 
 Route::resource('alumnos', AlumnoController::class)->middleware('can:admin.alumnos')->except('show')->names('admin.alumnos');
