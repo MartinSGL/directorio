@@ -11,7 +11,7 @@
         </div>
         @if($usaers->count())
             <div class="card-body">
-                <table class="table table-striped">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -28,8 +28,8 @@
                                 <td>{{$usaer->name}}</td>
                                 <td>{{$usaer->body}}</td>
                                 <td>
-                                    <a href="#" data-turbolinks="false" wire:click="edit({{$usaer}})" data-toggle="modal" data-target="#modal_editar" class="btn btn-info btn-sm m-1">Editar</a>
-                                    <a href="#" data-turbolinks="false" wire:click="delete({{$usaer}})" data-toggle="modal" data-target="#modal_eliminar" class="btn btn-danger btn-sm m-1">Eliminar</a>
+                                    <a href="#" wire:click="edit({{$usaer}})" data-toggle="modal" data-target="#modal_editar" class="btn btn-info btn-sm m-1">Editar</a>
+                                    <a href="#" wire:click="delete({{$usaer}})" data-toggle="modal" data-target="#modal_eliminar" class="btn btn-danger btn-sm m-1">Eliminar</a>
                                 </td>
                             </tr>
                             @php $i++; @endphp

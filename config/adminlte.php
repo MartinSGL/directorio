@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -227,31 +227,61 @@ return [
         [
             'text' => 'search',
             'search' => false,
+            'topnav' => false,
+        ],
+        [
+            'text' => 'Hogar',
             'topnav' => true,
+            'route' => 'home',
+            'icon' => 'fas fa-home fa-fw',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'Hogar',
-            'route'         => 'admin.home',
-            'icon'        => 'fas fa-home fa-fw',
+            'text' => 'Resumen',
+            'route' => 'admin.home',
+            'icon' => 'fas fa-chart-line fa-fw',
+            'can' => 'admin.home',
 
         ],
-        ['header' => 'Configuración de Información'],
+        ['header' => 'PERMISOS',
+            'can'=>'admin.users'
+        ],
+        [
+            'text' => "Usuarios",
+            'route'  => 'admin.users.index',
+            'icon' => 'fas fa-users fa-fw',
+            'active' => ['admin/users*'],
+            'can' => 'admin.users',
+        ],
+        [
+            'text' => "Roles",
+            'route'  => 'admin.roles.index',
+            'icon' => 'fas fa-users-cog fa-fw',
+            'active' => ['admin/roles*'],
+            'can' => 'admin.roles',
+        ],
+        ['header' => 'ALUMNOS'],
         [
             'text' => "Alumnos",
             'route'  => 'admin.alumnos.index',
             'icon' => 'fas fa-user-graduate fa-fw',
-            'active' => ['admin/alumnos*']
+            'active' => ['admin/alumnos*'],
+            'can' => 'admin.alumnos',
         ],
+        ['header' => 'USAER'],
             
         [
-            'text' => 'Usaer',
+            'text' => 'Discapacidades',
             'route'  => 'admin.usaers',
+            'icon' => 'fas fa-disease fa-fw',
+            'can' => 'admin.usaers',
+        ],
+        [
+            'text' => 'Alumnos NEE',
+            'route'  => 'admin.nee.index',
             'icon' => 'fas fa-sign-language fa-fw',
+            'active' => ['admin/nee*'],
+            'can' => 'admin.nee',
+            
         ],
     ],
 
@@ -336,7 +366,7 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',

@@ -12,7 +12,7 @@
                   <div class="card-body">  
                       <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input wire:model='name' name="name" type="text" class="form-control" autocomplete="off">
+                        <input wire:model.defer='name' name="name" type="text" class="form-control" autocomplete="off">
                           @error('name')
                               <small class="text-danger">
                                 *{{$message}}
@@ -21,7 +21,7 @@
                       </div>
                       <div class="form-group">
                           <label for="body">Descripción</label>
-                          <textarea wire:model='body' name="body" rows="4" class="form-control"></textarea>
+                          <textarea wire:model.defer='body' name="body" rows="4" class="form-control"></textarea>
                           @error('body')
                             <small class="text-danger">
                               *{{$message}}

@@ -18,8 +18,9 @@ class CreateAlumnosTable extends Migration
             $table->string('name',50);
             $table->string('apaterno',30);
             $table->string('amaterno',30);
+            $table->bigInteger('numero');
+            $table->bigInteger('numero_tutor');
             $table->unsignedBigInteger('grupo_id');
-            $table->boolean('usaer');
             $table->timestamps();
             $table->foreign('grupo_id')->references('id')->on('grupos')->onDelete('cascade');
         });

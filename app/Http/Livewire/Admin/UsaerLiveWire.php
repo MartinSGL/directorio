@@ -30,6 +30,7 @@ class UsaerLiveWire extends Component
 
     public function render()
     {
+
         $name = $this->name;
         $body = $this->body;
         $usaer_id = $this->usaer_id;
@@ -51,8 +52,7 @@ class UsaerLiveWire extends Component
         ]);
 
         $this->reset(['name','body','usaer_id']);
-        $mensaje = 'Discapasidad agregada con éxito';
-        $this->emit('confirm',$mensaje);
+        $this->emit('confirm','Discapasidad agregada con éxito');
         
     }
 
@@ -75,8 +75,7 @@ class UsaerLiveWire extends Component
         ]);
 
         $this->reset(['name','body','usaer_id']);
-        $mensaje = 'Discapasidad actualizada con éxito';
-        $this->emit('confirm',$mensaje);
+        $this->emit('confirm','Discapasidad actualizada con éxito');
     }
 
     public function delete(Usaer $usaer)
@@ -88,8 +87,7 @@ class UsaerLiveWire extends Component
     public function destroy(Usaer $usaer)
     {
         $usaer->delete();
-        $mensaje = 'Discapasidad eliminada con éxito';
-        $this->emit('confirm',$mensaje);
+        $this->emit('confirm', 'Discapasidad eliminada con éxito');
     }
 
     public function resetM()
