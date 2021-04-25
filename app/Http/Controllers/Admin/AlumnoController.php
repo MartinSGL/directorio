@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AlumnoRequest;
-use Illuminate\Http\Request;
 use App\Models\Grupo;
 use App\Models\Alumno;
-use App\Models\Numero;
+
 
 class AlumnoController extends Controller
 {

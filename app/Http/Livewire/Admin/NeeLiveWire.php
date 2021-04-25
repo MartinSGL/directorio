@@ -12,7 +12,7 @@ class NeeLiveWire extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search, $grupoS; 
-    public $nee_eliminar=0;
+    public $nee_eliminar=['id'=>0,'apaterno'=>'inicial','amaterno'=>'inicial','name'=>'inicial'];
 
     public function updatingSearch()
     {

@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                   <form action="{{ route('admin.nee.destroy', $nee_eliminar) }}" method="POST">
+                   <form action="{{ route('admin.nee.destroy', $nee_eliminar['id']) }}" method="POST">
                         @csrf
                         @method('delete')
                     <button class="btn btn-danger btn-sm">Eliminar</button>

@@ -70,12 +70,12 @@
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">  
-                            <h5>¿ Esta seguro de eliminar <strong>{{$alumno_eliminar['aptaerno']}} {{$alumno_eliminar['amaterno']}} {{$alumno_eliminar['name']}} ?</strong></h5>
+                            <h5>¿ Esta seguro de eliminar <strong>{{$alumno_eliminar['apaterno']}} {{$alumno_eliminar['amaterno']}} {{$alumno_eliminar['name']}} ?</strong></h5>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                   <form action="{{ route('admin.alumnos.destroy', $alumno_eliminar) }}" method="POST">
+                   <form action="{{ route('admin.alumnos.destroy', $alumno_eliminar['id']) }}" method="POST">
                         @csrf
                         @method('delete')
                     <button class="btn btn-danger btn-sm">Eliminar</button>

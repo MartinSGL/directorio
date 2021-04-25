@@ -13,7 +13,8 @@ class AlumnoLiveWire extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search, $grupoS; 
-    public $alumno_eliminar=0;
+    public $alumno_eliminar=['id'=>0,'apaterno'=>'inicial','amaterno'=>'inicial','name'=>'inicial'];
+   
 
     public function updatingSearch()
     {
@@ -22,7 +23,6 @@ class AlumnoLiveWire extends Component
 
     public function render()
     {
-        $alumno_eliminar = $this->alumno_eliminar;
         $alumnos =  Alumno::where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$this->search%")
         ->Where('grupo_id', 'like', '%' . $this->grupoS . '%')
         ->orderBy('grupo_id','asc')
@@ -30,7 +30,7 @@ class AlumnoLiveWire extends Component
         ->paginate(40);
 
         $grupos = Grupo::all();
-        return view('livewire.admin.alumno-live-wire',compact('alumnos','grupos','alumno_eliminar'));
+        return view('livewire.admin.alumno-live-wire',compact('alumnos','grupos'));
     }
 
     public function destroy(Alumno $alumno)
