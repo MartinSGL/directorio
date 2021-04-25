@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\Usaer;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 
 
 class UsaerLiveWire extends Component
@@ -35,8 +36,9 @@ class UsaerLiveWire extends Component
         $body = $this->body;
         $usaer_id = $this->usaer_id;
 
-        $usaers = Usaer::where('name', 'like', '%' . $this->search . '%')
-        ->orWhere('body', 'like', '%' . $this->search . '%')
+        $seachL = strtolower($this->search);
+        $usaers = Usaer::where(DB::raw("LOWER(name) "),'LIKE',"%$seachL%")
+        ->orWhere('body', 'like', '%' .$seachL. '%')
         ->latest('id')
         ->paginate(5);
 

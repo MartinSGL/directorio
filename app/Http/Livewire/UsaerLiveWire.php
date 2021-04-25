@@ -24,8 +24,9 @@ class UsaerLiveWire extends Component
     {
         $name = $this->name;
         $body = $this->body;
+        $searchL = strtolower($this->search);
         $alumnos =  Alumno::whereHas('usaers')
-        ->where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$this->search%")->Where('grupo_id', 'like', '%' . $this->salon . '%')
+        ->where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$searchL%")->Where('grupo_id', 'like', '%' . $this->salon . '%')
         ->orderBy('grupo_id','asc')
         ->orderBy('apaterno','asc')
         ->paginate(40);

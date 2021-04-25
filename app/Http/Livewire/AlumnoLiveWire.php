@@ -20,7 +20,8 @@ class AlumnoLiveWire extends Component
 
     public function render()
     {
-        $alumnos =  Alumno::where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$this->search%")->Where('grupo_id', 'like', '%' . $this->salon . '%')
+        $seachL = strtolower($this->search);
+        $alumnos =  Alumno::where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$seachL%")->Where('grupo_id', 'like', '%' . $this->salon . '%')
         ->orWhere('numero', 'like',  $this->search . '%')->Where('grupo_id', 'like', '%' . $this->salon . '%')
         ->orWhere('numero_tutor', 'like',  $this->search . '%')->Where('grupo_id', 'like', '%' . $this->salon . '%')
         ->orderBy('grupo_id','asc')

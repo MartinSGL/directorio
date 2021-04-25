@@ -21,9 +21,10 @@ class NeeLiveWire extends Component
     
     public function render()
     {
+        $seachL = strtolower($this->search);
         $nee_eliminar = $this->nee_eliminar;
         $alumnos =  Alumno::whereHas('usaers')
-        ->where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$this->search%")
+        ->where(DB::raw("LOWER(CONCAT(apaterno,' ',amaterno,' ',name)) "),'LIKE',"%$seachL%")
         ->orderBy('grupo_id','asc')
         ->orderBy('apaterno','asc')
         ->paginate(40);

@@ -6,10 +6,12 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use App\Models\Alumno;
 use App\Models\Usaer;
+use Livewire\WithPagination;
 
 
 class NeeBALiveWire extends Component
 {
+    use WithPagination;
     public $search, $search_d, $dis_select;
     public $componente_alumno=true; 
     public $valor;
@@ -22,14 +24,16 @@ class NeeBALiveWire extends Component
 
     public function render()
     {
+        $seachL = strtolower($this->search);
         $alumnos =  Alumno::whereDoesntHave('usaers')
-        ->where(DB::raw("CONCAT(apaterno,' ',amaterno,' ',name) "),'LIKE',"%$this->search%")
+        ->where(DB::raw("LOWER(CONCAT(apaterno,' ',amaterno,' ',name)) "),'LIKE',"%$seachL%")
         ->orderBy('grupo_id','asc')
-        ->paginate(40);
+        ->get();
 
-        $discapacidades = Usaer::where('name', 'like', '%' . $this->search_d . '%')
+        $seach_dL = strtolower($this->search_d);
+        $discapacidades = Usaer::where(DB::raw("LOWER(name)"),'LIKE',"%$seach_dL%")
         ->latest('id')
-        ->paginate(10);
+        ->get();
 
         $valor = $this->valor;
 
