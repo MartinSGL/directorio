@@ -16,7 +16,7 @@
                 <ul class="list-group">
                     @foreach ($alumnos as $a)
                         <li class="list-group-item">  {{$a->full_name}} - <strong> {{$a->grupo->name}} </strong> 
-                            <button type="button" wire:click.debounce.200ms="change_component({{$a->id}})" class="boton_alumno btn btn-info btn-small float-right"> Seleccionar </button>
+                            <button type="button" wire:click.debounce.1ms="change_component({{$a->id}})" class="boton_alumno btn btn-info btn-small float-right"> Seleccionar </button>
                         </li>          
                     @endforeach
                 </ul>
@@ -26,7 +26,7 @@
         @if($alumno==null)
         {{--Crear/Create--}}
             {!! Form::open(['route'=>'admin.nee.store','autocomplete'=>'off']) !!}
-                <div wire:ignore.self class="card" id="card_discapacidad" style="display: none">
+                <div wire:ignore.self class="card" id="card_discapacidad">
                     <div class="card-header">
                         {!! Form::submit('Guardar', ['class'=>'btn btn-success float-right ml-1']) !!}
                         <div class="row">
@@ -53,7 +53,7 @@
         @else
         {{--Editar/Edit--}}
             {!! Form::model($alumno, ['route'=>['admin.nee.update',$alumno],'autocomplete'=>'off', 'method'=>'put']) !!}
-                <div wire:ignore.self class="card" id="card_discapacidad" style="display: none">
+                <div wire:ignore.self class="card" id="card_discapacidad">
                     <div class="card-header">
                         {!! Form::submit('Actualizar', ['class'=>'btn btn-info float-right ml-1']) !!}
                         <div class="row">
@@ -95,18 +95,14 @@
     @section('js')
         @if($errors->any() || $alumno!=null)
             <script>
-                $('#card_discapacidad').fadeIn(100);
                 $('.link_ad').toggleClass('active');
             </script>
         @endif
         <script>
             $('.boton_alumno').click(function(){
-                $('#card_alumno').fadeOut(100);
-                
                 setTimeout(function() {
                     $('.link_ad').toggleClass('active');
-                    $('#card_discapacidad').fadeIn(100);
-                }, 600);
+                }, 300);
             });
         </script>
     @stop
