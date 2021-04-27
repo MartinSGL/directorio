@@ -22,52 +22,101 @@
                     {{-- inputs --}}
                     @if ($alumnos->count())
                         {{-- tabla --}}
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        #
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Nombre
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Grupo
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Discapacidades
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @php $i=1; @endphp
-                                @foreach ($alumnos as $alumno)
-                                    <tr class="hover:bg-gray-200 text-xs md:text-sm">
-                                        <td class="px-6 py-4">
-                                            {{ $i }}
-                                        </td>
-                                        <td class="px-6 py-4 capitalize text-xs md:text-sm">
-                                            {{ $alumno->full_name }} 
-                                        </td>
-                                        <td class="px-6 py-4 text-xs md:text-sm">
-                                            {{ $alumno->grupo->name }}
-                                        </td>
-                                        <td class="px-6 py-4 text-xs md:text-sm">
-                                            <ul>
-                                                @foreach ($alumno->usaers as $al)
-                                                    <li>{{$al->name}} <button wire:click="getInfo({{$al->id}})" class="bg-gray-400 px-2 py-1 text-white hover:bg-blue-200 rounded-full"><i class="far fa-question-circle"></i></button></li>
-                                                @endforeach
-                                            </ul>
-                                        </td>
+                        <div class="hidden md:block">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Nombre
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Grupo
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Discapacidades
+                                        </th>
                                     </tr>
-                                    @php $i++; @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @php $i=1; @endphp
+                                    @foreach ($alumnos as $alumno)
+                                        <tr class="hover:bg-gray-200 text-xs md:text-sm">
+                                            <td class="px-6 py-4">
+                                                {{ $i }}
+                                            </td>
+                                            <td class="px-6 py-4 capitalize text-xs md:text-sm">
+                                                {{ $alumno->full_name }} 
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm">
+                                                {{ $alumno->grupo->name }}
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm">
+                                                <ul>
+                                                    @foreach ($alumno->usaers as $al)
+                                                        <li>{{$al->name}} <button wire:click="getInfo({{$al->id}})" class="bg-gray-400 px-2 py-1 text-white hover:bg-blue-200 rounded-full"><i class="far fa-question-circle"></i></button></li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        @php $i++; @endphp
+                                    @endforeach
+                                </tbody>
+                            </table> 
+                        </div>
+
+                        {{--tabla responsiva--}}
+                        <div class="md:hidden block">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <div>#</div>
+                                            <div>Grupo</div>                                        
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <div>Nombre</div>
+                                            <div>Discapacidad</div>
+                                        </th>
+                                    </tr>  
+                                </thead>
+                                <tbody class="bg-white">
+                                    @php $i=1; @endphp
+                                    @foreach ($alumnos as $alumno)
+                                        <tr>
+                                            <td class="px-6 py-4 text-center">
+                                                {{ $i }}
+                                            </td>
+                                            <td class="px-6 py-4 capitalize text-xs md:text-sm text-center">
+                                                {{ $alumno->full_name }} 
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b-2">
+                                            <td class="px-6 py-4 text-xs md:text-sm text-center">
+                                                {{ $alumno->grupo->name }}
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm text-center">
+                                                <ul>
+                                                    @foreach ($alumno->usaers as $al)
+                                                        <li>{{$al->name}} <button wire:click="getInfo({{$al->id}})" class="bg-gray-400 px-2 py-1 text-white hover:bg-blue-200 rounded-full"><i class="far fa-question-circle"></i></button></li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        @php $i++; @endphp   
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        
                         <div class="px-6 py-4">
                             {{$alumnos->links()}}
                         </div>

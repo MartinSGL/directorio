@@ -22,62 +22,120 @@
                     {{-- inputs --}}
                     @if ($alumnos->count())
                         {{-- tabla --}}
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        #
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Nombre
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Grupo
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Telefono(s)
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Usaer
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @php $i=1; @endphp
-                                @foreach ($alumnos as $alumno)
-                                    <tr class="hover:bg-gray-200 text-xs md:text-sm">
-                                        <td class="px-6 py-4">
-                                            {{ $i }}
-                                        </td>
-                                        <td class="px-6 py-4 capitalize text-xs md:text-sm">
-                                            {{ $alumno->full_name }} 
-                                        </td>
-                                        <td class="px-6 py-4 text-xs md:text-sm">
-                                            {{ $alumno->grupo->name }}
-                                        </td>
-                                        <td class="px-6 py-4 text-xs md:text-sm">
-                                            <ul>
-                                                <li class="mb-3"><strong>Alumno: </strong>{{ $alumno->numero }} <a target="_blank" href="https://api.whatsapp.com/send?phone=521{{$alumno->numero}}" class="text-white bg-green-500 rounded-full px-1"> <i class="fab fa-whatsapp"></i> </a></li>
-                                                <li><strong>Tutor:&nbsp;&nbsp;&nbsp;&nbsp; </strong>{{ $alumno->numero_tutor }} <a target="_blank" href="https://api.whatsapp.com/send?phone=521{{$alumno->numero_tutor}}" class="text-white bg-green-500 rounded-full px-1"> <i class="fab fa-whatsapp"></i> </a></li>
-                                            </ul>
-                                        </td>
-                                        <td class="px-6 py-4 text-xs md:text-sm">
-                                            @if($alumno->usaers->count()>0)
-                                                <i class="fas fa-check text-red-600"></i>
-                                            @else
-                                                <i class="fas fa-times"></i>
-                                            @endif
-                                        </td>
+                        <div class="hidden md:block">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Nombre
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Grupo
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Telefono(s)
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Usaer
+                                        </th>
                                     </tr>
-                                    @php $i++; @endphp
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @php $i=1; @endphp
+                                    @foreach ($alumnos as $alumno)
+                                        <tr class="hover:bg-gray-200 text-xs md:text-sm">
+                                            <td class="px-6 py-4">
+                                                {{ $i }}
+                                            </td>
+                                            <td class="px-6 py-4 capitalize text-xs md:text-sm">
+                                                {{ $alumno->full_name }} 
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm">
+                                                {{ $alumno->grupo->name }}
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm">
+                                                <ul>
+                                                    <li class="mb-3"><strong>Alumno: </strong>{{ $alumno->numero }} <a target="_blank" href="https://api.whatsapp.com/send?phone=521{{$alumno->numero}}" class="text-white bg-green-500 rounded-full px-1"> <i class="fab fa-whatsapp"></i> </a></li>
+                                                    <li><strong>Tutor:&nbsp;&nbsp;&nbsp;&nbsp; </strong>{{ $alumno->numero_tutor }} <a target="_blank" href="https://api.whatsapp.com/send?phone=521{{$alumno->numero_tutor}}" class="text-white bg-green-500 rounded-full px-1"> <i class="fab fa-whatsapp"></i> </a></li>
+                                                </ul>
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm">
+                                                @if($alumno->usaers->count()>0)
+                                                    <i class="fas fa-check text-red-600"></i>
+                                                @else
+                                                    <i class="fas fa-times"></i>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @php $i++; @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        {{--tabla responsiva--}}
+                        <div class="md:hidden block">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            #
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <div>Nombre</div>
+                                            <div>Telefonos(s)</div>
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <div>Grupo</div>
+                                            <div>Usaer</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $i=1; @endphp
+                                    @foreach ($alumnos as $alumno)
+                                        <tr>
+                                            <td rowspan="2" class="px-6 py-4 border-b-2 text-center">
+                                                {{ $i }}
+                                            </td>
+                                            <td class="px-6 py-4 capitalize text-xs md:text-sm text-center">
+                                                {{ $alumno->full_name }} 
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm text-center">
+                                                {{ $alumno->grupo->name }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 text-xs md:text-sm border-b-2 text-center">
+                                                <ul>
+                                                    <li class="mb-3"><strong>Alumno: </strong>{{ $alumno->numero }} <a target="_blank" href="https://api.whatsapp.com/send?phone=521{{$alumno->numero}}" class="text-white bg-green-500 rounded-full px-1"> <i class="fab fa-whatsapp"></i> </a></li>
+                                                    <li><strong>Tutor:&nbsp;&nbsp;&nbsp;&nbsp; </strong>{{ $alumno->numero_tutor }} <a target="_blank" href="https://api.whatsapp.com/send?phone=521{{$alumno->numero_tutor}}" class="text-white bg-green-500 rounded-full px-1"> <i class="fab fa-whatsapp"></i> </a></li>
+                                                </ul>
+                                            </td>
+                                            <td class="px-6 py-4 text-xs md:text-sm border-b-2 text-center">
+                                                @if($alumno->usaers->count()>0)
+                                                    <i class="fas fa-check text-red-600"></i>
+                                                @else
+                                                    <i class="fas fa-times"></i>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @php $i++; @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                       
                         <div class="px-6 py-4">
                             {{$alumnos->links()}}
                         </div>
